@@ -1,0 +1,30 @@
+ (C) Copyright IBM Corporation 2016, 2017
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+FROM ubuntu:16.04
+
+# Add PIP .. PIP already in slave-base!
+RUN apt-get update && apt-get install -y --no-install-recommends git python3 python3-pip openssh-server
+
+# Add MkDocs and dependencies
+RUN pip install -r requirements.txt 
+
+ENV LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8
+    
+# Create the image version files for reference
+RUN mkdir -p docker \
+    && echo "@@DOCKER_IMAGE_VERSION@@" > docker/@@DOCKER_IMAGE_NAME@@.version \
+    && echo "@@DOCKER_IMAGE_NAME@@:@@DOCKER_IMAGE_VERSION@@" > docker/image.version
