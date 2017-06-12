@@ -27,8 +27,9 @@ ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
     
 WORKDIR /docs
+RUN cat Dockerfile.template > Dockerfile
 
 # Create the image version files for reference
-RUN mkdir -p docker \
-    && echo "@@DOCKER_IMAGE_VERSION@@" > docker/@@DOCKER_IMAGE_NAME@@.version \
-    && echo "@@DOCKER_IMAGE_NAME@@:@@DOCKER_IMAGE_VERSION@@" > docker/image.version
+#RUN mkdir -p docker \
+#    && echo "@@DOCKER_IMAGE_VERSION@@" > docker/@@DOCKER_IMAGE_NAME@@.version \
+#    && echo "@@DOCKER_IMAGE_NAME@@:@@DOCKER_IMAGE_VERSION@@" > docker/image.version
