@@ -15,6 +15,8 @@
 
 FROM ubuntu:16.04
 
+# MAINTAINER 
+
 # Add PIP .. PIP already in slave-base!
 RUN apt-get update && apt-get install -y --no-install-recommends git python3 python3-pip openssh-server
 
@@ -24,6 +26,8 @@ RUN pip install -r requirements.txt
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
     
+WORKDIR /docs
+
 # Create the image version files for reference
 RUN mkdir -p docker \
     && echo "@@DOCKER_IMAGE_VERSION@@" > docker/@@DOCKER_IMAGE_NAME@@.version \
