@@ -21,7 +21,9 @@ FROM ubuntu:16.04
 RUN apt-get update && apt-get install -y --no-install-recommends git python3 python3-pip openssh-server
 
 # Add MkDocs and dependencies
-RUN pip install -r requirements.txt 
+COPY requirements.txt /tmp/
+RUN pip install --requirement /tmp/requirements.txt
+COPY . /tmp/
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
