@@ -30,5 +30,6 @@ COPY . /tmp/
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
-    
+
+RUN mkdir /docs
 WORKDIR /docs
