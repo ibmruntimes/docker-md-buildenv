@@ -6,3 +6,7 @@ Pre-reqs include:
 - python-pip
 - python-setuptools
 - plus ... a pinned dependency list for MkDocs (see requirements.txt)
+
+This image is stored at: https://hub.docker.com/r/ibmjavaid/mkdocs_build_env/
+
+To use this image **docker pull ibmjavaid/mkdocs_build_env**
