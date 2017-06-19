@@ -14,22 +14,34 @@
 #
 
 FROM ubuntu:16.04
+MAINTAINER runtimesid <jtcid@uk.ibm.com> 
 
-# MAINTAINER 
-
-# Add PIP .. PIP already in slave-base!
-RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python-setuptools openjdk-8-jdk \
+# Set up for SSH (including SSH login fix to prevent user being logged out) and add PIP 
+RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python-setuptools openssh-server openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install --upgrade pip \
-    && pip3 install -U setuptools
+    && pip3 install -U setuptools \
+    && sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
+    && mkdir -p /var/run/sshd
 
 # Add MkDocs and dependencies
 COPY requirements.txt /tmp/
 RUN pip3 install --requirement /tmp/requirements.txt
 COPY . /tmp/
 
+# Setup jenkins user
+RUN  useradd -m -d /home/jenkins -s /bin/sh jenkins \
+    && echo "jenkins:jenkinspass" | chpasswd
+
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
+# Standard SSH port
+EXPOSE 22
+
+# Deafult command
+CMD ["/usr/sbin/sshd", "-D"]
+
+# Create and set a working directory /docs
 RUN mkdir /docs
 WORKDIR /docs
