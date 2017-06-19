@@ -18,8 +18,8 @@ MAINTAINER runtimesid <jtcid@uk.ibm.com>
 
 # Set up for SSH (including SSH login fix to prevent user being logged out) and add PIP 
 RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python-setuptools openjdk-8-jdk \
-    && DEBIAN_FRONTEND="noninteractive" apt-get -q upgrade -y -o Dpkg::Options::="--force-confnew" --no-install-recommends &&\
-    && DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends openssh-server &&\
+    && DEBIAN_FRONTEND="noninteractive" apt-get -q upgrade -y -o Dpkg::Options::="--force-confnew" --no-install-recommends \
+    && DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends openssh-server \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install --upgrade pip \
     && pip3 install -U setuptools \
