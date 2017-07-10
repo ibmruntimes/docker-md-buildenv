@@ -2,6 +2,7 @@
 Docker script to create an image that contains all the pre-reqs to build markdown with MkDocs in a jenkins slave build node.
 
 Pre-reqs include:
+- git
 - python 3
 - python-pip
 - python-setuptools
