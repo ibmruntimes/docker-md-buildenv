@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 python3
     && mkdir -p /var/run/sshd
 
 # Start Python "virtualenv" sub-container for running Python 3.5
-RUN source /usr/lib/python3.5/venv/scripts/posix/activate	
+RUN . /usr/lib/python3.5/venv/scripts/posix/activate	
 	
 # Add MkDocs and dependencies
 COPY requirements.txt /tmp/
