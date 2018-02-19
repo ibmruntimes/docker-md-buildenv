@@ -26,6 +26,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 python3
     && sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd \
     && mkdir -p /var/run/sshd
 
+pwd	
+python --version
+source home/jenkins/workspace/Create_Docker_image/python3.4/bin/activate	
+python --version
+	
 # Add MkDocs and dependencies
 COPY requirements.txt /tmp/
 RUN pip3 install --requirement /tmp/requirements.txt
