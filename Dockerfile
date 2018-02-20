@@ -25,9 +25,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 python3
     && pip3 install -U setuptools \
     && sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd \
     && mkdir -p /var/run/sshd
-
-# Start Python "virtualenv" sub-container for running Python 3.5
-RUN . /usr/lib/python3.5/venv/scripts/posix/activate	
 	
 # Add MkDocs and dependencies
 COPY requirements.txt /tmp/
