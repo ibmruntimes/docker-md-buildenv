@@ -7,12 +7,12 @@
 click==6.7                # via mkdocs
 jinja2==2.10              # via mkdocs
 livereload==2.5.1         # via mkdocs
-markdown==2.6.9           # via mkdocs, pymdown-extensions
+markdown==2.6.11          # via mkdocs, pymdown-extensions
 markupsafe==1.0           # via jinja2
-mkdocs-material==2.0.4
-mkdocs==0.17.1
+mkdocs-material==2.6.3
+mkdocs==0.17.2
 pygments==2.2.0
-pymdown-extensions==4.1   # via mkdocs-material
+pymdown-extensions==4.8   # via mkdocs-material
 pyyaml==3.12              # via mkdocs
 six==1.11.0               # via livereload
-tornado==4.5.2            # via livereload, mkdocs
+tornado==4.5.3            # via livereload, mkdocs
