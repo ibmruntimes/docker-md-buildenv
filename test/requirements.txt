@@ -3,7 +3,7 @@
 click==6.7                # via mkdocs
 jinja2==2.10              # via mkdocs
 livereload==2.5.1         # via mkdocs
-markdown==2.6.11           # via mkdocs, pymdown-extensions
+markdown==2.6.11          # via mkdocs, pymdown-extensions
 markupsafe==1.0           # via jinja2
 mkdocs-material==2.6.3
 mkdocs==0.17.2

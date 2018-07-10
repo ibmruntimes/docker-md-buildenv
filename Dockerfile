@@ -17,15 +17,16 @@ FROM ubuntu:16.04
 MAINTAINER runtimesid <jtcid@uk.ibm.com> 
 
 # Set up for SSH (including SSH login fix to prevent user being logged out) and add PIP 
-RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python-setuptools git openjdk-8-jdk \
+RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip python-setuptools git openjdk-8-jdk zip \
     && DEBIAN_FRONTEND="noninteractive" apt-get -q upgrade -y -o Dpkg::Options::="--force-confnew" --no-install-recommends \
     && DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends openssh-server \
     && rm -rf /var/lib/apt/lists/* \
-    && pip3 install --upgrade pip \
     && pip3 install -U setuptools \
     && sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd \
-    && mkdir -p /var/run/sshd
+    && mkdir -p /var/run/sshd	
 
+#    && pip3 install --upgrade pip \ - this line moved from above cmd as it makes it fail (due to a Pip v10 upgrade)
+	
 # Add MkDocs and dependencies
 COPY requirements.txt /tmp/
 RUN pip3 install --requirement /tmp/requirements.txt
