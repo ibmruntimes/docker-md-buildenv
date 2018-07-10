@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 python3
 	
 # Add MkDocs and dependencies
 COPY requirements.txt /tmp/
-RUN pip3 install --requirement /tmp/requirements.txt
+RUN pip3 install --requirement /tmp/requirements.prod
 COPY . /tmp/
 
 # Setup jenkins user and add path for pip-tools
@@ -38,9 +38,9 @@ RUN  useradd -m -d /home/jenkins -s /bin/sh jenkins \
     && echo "jenkins:jenkinspass" | chpasswd \
 	export PATH=/root/.local/bin:$PATH
 
-ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8 
 ENV PATH /root/.local/bin:$PATH
+RUN pip-compile /tmp/requirements.in
 
 # Standard SSH port
 EXPOSE 22
